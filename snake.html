@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #demoCanvas {
+            position: absolute;
+            top: 9px;
+            left: 9px;
+            z-index: 10000;
+        }
+        
+        #canvas {
+            position: relative;
+            z-index: -1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <canvas id="canvas" width="650" height="650"></canvas>
+    <canvas id="demoCanvas" width="650" height="650"></canvas>
+    <button id="dice">dice</button>
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+
+
+    <script>
+        window.onload = function() {
+            var ballx = 30;
+            var bally = 620;
+            var coordsY = [];
+            var coordsX = [];
+
+            var stage = new createjs.Stage("demoCanvas");
+            var circle = new createjs.Shape();
+            circle.graphics.beginFill("purple").drawCircle(0, 0, 20);
+            circle.x = ballx;
+            circle.y = bally;
+            stage.addChild(circle);
+
+
+            createjs.Ticker.setFPS(60);
+            createjs.Ticker.addEventListener("tick", stage);
+
+
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            var canwidth = canvas.width;
+            var canheight = canvas.height;
+
+            var numbmove = 1;
+            var flag = true;
+            draw();
+
+
+            for (var i = 9; i >= 0; i--) {
+                for (var j = 0; j <= 9; j++) {
+                    coordsX[j] = (j * 65) + 5;
+                }
+                coordsY[i] = (i * 65) + 5;
+
+            }
+            createjs.Tween.get(circle, {
+                loop: false
+            })
+            var waitFor = false;
+
+            var x = 0;
+            var y = 9;
+            var flag = true;
+            var lX = 0;
+            var lY = 9;
+            document.getElementById("dice").addEventListener("click", function() {
+                var dice = Math.ceil(Math.random() * 5);
+
+                if (y == 0 && x <= 1) {
+                    alert('you won');
+                    x = 0;
+                    y = 0;
+
+                } else {
+                    if (flag) {
+                        x += dice;
+                    } else {
+                        x -= dice;
+                    }
+
+                    if (x > 9) {
+                        var overFlow = x - 9;
+                        x -= (overFlow);
+                        y--;
+                        flag = false;
+                    } else if (x < 0) {
+                        var overFlow = x;
+                        overFlow = Math.abs(overFlow);
+                        x += (overFlow);
+                        y--;
+                        flag = true;
+                    }
+
+                    if (x == 8 && y == 9) {
+                        x = 8;
+                        y = 7;
+                        flag = true;
+                        createjs.Tween.get(circle, {
+                                loop: false
+                            })
+                            .to({
+                                x: coordsX[8] + 25,
+                                y: coordsY[9] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+                            .to({
+                                x: coordsX[x] + 25,
+                                y: coordsY[y] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+
+
+                        waitFor = true;
+                    }
+                    if (x == 4 && y == 6) {
+                        x = 4;
+                        y = 8;
+                        flag = false;
+                        createjs.Tween.get(circle, {
+                                loop: false
+                            })
+                            .to({
+                                x: coordsX[4] + 25,
+                                y: coordsY[6] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+                            .to({
+                                x: coordsX[x] + 25,
+                                y: coordsY[y] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+
+                        waitFor = true;
+
+                    }
+                    if (x == 2 && y == 7) {
+                        x = 2;
+                        y = 5;
+                        flag = true;
+                        createjs.Tween.get(circle, {
+                                loop: false
+                            })
+                            .to({
+                                x: coordsX[2] + 25,
+                                y: coordsY[7] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+                            .to({
+                                x: coordsX[x] + 25,
+                                y: coordsY[y] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+
+                        waitFor = true
+                    }
+                    if (x == 6 && y == 6) {
+                        x = 6;
+                        y = 3;
+                        flag = true;
+                        createjs.Tween.get(circle, {
+                                loop: false
+                            })
+                            .to({
+                                x: coordsX[6] + 25,
+                                y: coordsY[6] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+                            .to({
+                                x: coordsX[x] + 25,
+                                y: coordsY[y] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+
+                        waitFor = true
+                    }
+                    if (x == 8 && y == 3) {
+                        x = 7;
+                        y = 7;
+                        flag = true;
+                        createjs.Tween.get(circle, {
+                                loop: false
+                            })
+                            .to({
+                                x: coordsX[8] + 25,
+                                y: coordsY[3] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+                            .to({
+                                x: coordsX[x] + 25,
+                                y: coordsY[y] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+
+                        waitFor = true
+                    }
+                    if (x == 5 && y == 1) {
+                        x = 4;
+                        y = 5;
+                        flag = true;
+                        createjs.Tween.get(circle, {
+                                loop: false
+                            })
+                            .to({
+                                x: coordsX[5] + 25,
+                                y: coordsY[1] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+                            .to({
+                                x: coordsX[x] + 25,
+                                y: coordsY[y] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+
+                        waitFor = true
+                    }
+                    if (x == 2 && y == 1) {
+                        x = 2;
+                        y = 3;
+                        flag = true;
+                        createjs.Tween.get(circle, {
+                                loop: false
+                            })
+                            .to({
+                                x: coordsX[2] + 25,
+                                y: coordsY[1] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+                            .to({
+                                x: coordsX[x] + 25,
+                                y: coordsY[y] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+
+                        waitFor = true
+                    }
+                    if (x == 1 && y == 2) {
+                        x = 1;
+                        y = 0;
+                        flag = true;
+                        createjs.Tween.get(circle, {
+                                loop: false
+                            })
+                            .to({
+                                x: coordsX[1] + 25,
+                                y: coordsY[2] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+                            .to({
+                                x: coordsX[x] + 25,
+                                y: coordsY[y] + 25
+                            }, 1000, createjs.Ease.getPowInOut(4))
+
+                        waitFor = true
+                    }
+
+                }
+
+
+                if (waitFor) {
+                    waitFor = false
+                } else {
+                    createjs.Tween.get(circle, {
+                            loop: false
+                        })
+                        .to({
+                            x: coordsX[x] + 25,
+                            y: coordsY[y] + 25
+                        }, 1000, createjs.Ease.getPowInOut(4))
+                }
+
+
+            });
+
+
+            function draw() {
+                var numbers = 100;
+                for (var i = 0; i < 10; i++) {
+                    for (var j = 0; j < 10; j++) {
+                        ctx.fillStyle = 'rgb(' + Math.floor(255 - 12.5 * i) + ', ' + Math.floor(255 - 42.5 * j) + ', 0)';
+                        ctx.fillRect(j * 65, i * 65, 65, 65);
+                        ctx.strokeRect(j * 65, i * 65, 65, 65);
+                    }
+                }
+                var LeftOrRight = true;
+                for (var i = 65; i <= 650; i += 65) {
+
+                    if (LeftOrRight) {
+                        for (var j = 0; j <= 585; j += 65) {
+                            ctx.font = "14px serif";
+                            ctx.fillStyle = "black";
+                            ctx.fillText(numbers, 1 * j, 1 * i);
+                            numbers--;
+                        }
+                        LeftOrRight = false;
+                    } else {
+
+                        for (var j = 585; j >= 0; j -= 65) {
+                            ctx.font = "14x serif";
+
+                            ctx.fillStyle = "black";
+                            ctx.fillText(numbers, 1 * j, 1 * i);
+                            numbers--;
+                        };
+                        LeftOrRight = true;
+                    }
+                }
+                var img = new Image();
+                var snake = new Image();
+                var snake2 = new Image();
+
+                img.onload = function() {
+
+                    ctx.drawImage(img, 525, 400, 50, 300);
+                    ctx.drawImage(img, 136, 280, 50, 300);
+                    ctx.drawImage(img, 395, 150, 50, 370);
+                    ctx.drawImage(img, 70, -40, 50, 300);
+
+                } 
+                img.src = 'ladder-2.png';
+                snake.onload = function() {
+
+                    ctx.drawImage(snake, 465, 200, 100, 300);
+                    ctx.drawImage(snake, 265, 70, 100, 300);
+
+                } 
+
+                snake.src = 'snake-2.png';
+                snake2.onload = function() {
+
+                    ctx.drawImage(snake2, 260, 390, 150, 200);
+                    ctx.drawImage(snake2, 130, 60, 150, 200);
+
+                } 
+                snake2.src = 'snake-1.png';
+
+            }
+        }
+    </script>
+</body>
+
+</html>
