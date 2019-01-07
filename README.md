@@ -2,11 +2,10 @@
 
 snake & ladders game designed by canvas and code by js and used tween.js for animation
 
-declaring images
+ draw ladders
 ```
             var img = new Image();
-                var snake = new Image();
-                var snake2 = new Image();
+
 
                 img.onload = function() {
 
@@ -17,7 +16,16 @@ declaring images
 
                 } 
                 img.src = 'ladder-2.png';
-                snake.onload = function() {
+               
+```
+
+
+draw snakes
+```
+         var snake = new Image();
+                var snake2 = new Image();
+
+ snake.onload = function() {
 
                     ctx.drawImage(snake, 465, 200, 100, 300);
                     ctx.drawImage(snake, 265, 70, 100, 300);
@@ -32,5 +40,8 @@ declaring images
 
                 } 
                 snake2.src = 'snake-1.png';
-
-```
+                ```
+                
+                
+                
+                
