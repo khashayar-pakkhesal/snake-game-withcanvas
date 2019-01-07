@@ -40,7 +40,7 @@ draw snakes
 
                 } 
                 snake2.src = 'snake-1.png';
-                ```
+          
                 
                 
                 
